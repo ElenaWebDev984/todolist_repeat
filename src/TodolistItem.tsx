@@ -1,3 +1,5 @@
+import {Button} from "./Button.tsx";
+
 type TodolistItemTypes = {
     title: string
     tasks: Task[]
@@ -29,13 +31,13 @@ export const TodolistItem = ({title, tasks}: TodolistItemTypes) => {
             <h3>{title}</h3>
             <div>
                 <input/>
-                <button>+</button>
+                <Button title='+'/>
             </div>
             {tasksList}
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <Button title='All'/>
+                <Button title='Active'/>
+                <Button title='Completed'/>
             </div>
         </div>
     );
