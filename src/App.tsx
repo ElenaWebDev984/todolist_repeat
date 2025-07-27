@@ -19,15 +19,15 @@ export const App = () => {
 
     // TODO - Create
 
-const createTask = (title: string) => {
-    const newTask: Task = {
-        id: v1(),
-        title: title,
-        isDone: false,
+    const createTask = (title: string) => {
+        const newTask: Task = {
+            id: v1(),
+            title: title,
+            isDone: false,
+        }
+        const nextState = [...tasks, newTask]
+        setTasks(nextState)
     }
-    const nextState = [...tasks,newTask]
-    setTasks(nextState)
-}
 
     // TODO - Update
 
@@ -63,13 +63,13 @@ const createTask = (title: string) => {
     const filteredTasks: Task[] = getFilteredTasks(tasks, filter)
 
 
-
     return (
         <div className="app">
             <TodolistItem title={todolistTitle}
                           tasks={filteredTasks}
                           deleteTask={deleteTask}
-                          changeTodolistFilter={changeTodolistFilter}/>
+                          changeTodolistFilter={changeTodolistFilter}
+                          createTask={createTask}/>
         </div>
     )
 }

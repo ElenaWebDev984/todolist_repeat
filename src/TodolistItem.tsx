@@ -6,6 +6,7 @@ type TodolistItemTypes = {
     tasks: Task[]
     deleteTask: (taskId: Task['id']) => void
     changeTodolistFilter: (filter: FilterValues) => void
+    createTask: (title: string) => void
 }
 
 export type Task = {
@@ -19,6 +20,7 @@ export const TodolistItem = ({
                                  tasks,
                                  deleteTask,
                                  changeTodolistFilter,
+                                 createTask,
                              }: TodolistItemTypes) => {
 
     const tasksList = tasks.length === 0
@@ -42,7 +44,8 @@ export const TodolistItem = ({
             <h3>{title}</h3>
             <div>
                 <input/>
-                <Button title='+'/>
+                <Button title='+'
+                onClick={() => createTask('New task')}/>
             </div>
             {tasksList}
             <div>
