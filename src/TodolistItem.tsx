@@ -1,6 +1,6 @@
 import {Button} from "./Button.tsx";
 import {FilterValues} from "./App.tsx";
-import {useRef} from "react";
+import {useState} from "react";
 
 type TodolistItemTypes = {
     title: string
@@ -24,8 +24,7 @@ export const TodolistItem = ({
                                  createTask,
                              }: TodolistItemTypes) => {
 
-    const inputRef = useRef<HTMLInputElement>(null);
-    console.log(inputRef)
+    const [taskTitle, setTaskTitle] = useState('')
 
     const tasksList = tasks.length === 0
         ? <span>Tasks list is empty</span>
@@ -47,15 +46,14 @@ export const TodolistItem = ({
         <div>
             <h3>{title}</h3>
             <div>
-                <input ref={inputRef}/>
+                <input value={taskTitle}
+                       placeholder='Max 15 characters'
+                       onChange={(e) => setTaskTitle(e.currentTarget.value)}/>
                 <Button title='+'
-                        onClick={() => {
-                            if (inputRef.current) {
-                                createTask(inputRef.current.value)
-                                // TODO Очистка input
-                                inputRef.current.value = ''
-                            }
-                        }}/>
+                        onClick={() => createTask(taskTitle)}
+                        disabled={!taskTitle || taskTitle.length > 15}/>
+                {taskTitle && taskTitle.length <= 15 && <div>Rest {15 - taskTitle.length} characters</div>}
+                {taskTitle.length > 15 && <div style={{color: 'red'}}>Title is too long</div>}
             </div>
             {tasksList}
             <div>
