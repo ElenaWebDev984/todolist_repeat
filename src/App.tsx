@@ -16,18 +16,29 @@ export const App = () => {
 
     const deleteTask = (taskId: Task['id']) => {
         // TODO create next state
+        // TODO immutable change data
         const nextState = tasks.filter(task => task.id !== taskId)
-        // TODO set state
+        // TODO set next state
         setTasks(nextState)
     }
 
 
 
     //   TODO UI
+    const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
+
+    let filteredTasks = tasks
+    if (filter === 'active') {
+        filteredTasks = tasks.filter(task => !task.isDone)
+    }
+    if (filter === 'completed') {
+        filteredTasks = tasks.filter(task => task.isDone)
+    }
+
     return (
         <div className="app">
             <TodolistItem title={todolistTitle}
-                          tasks={tasks}
+                          tasks={filteredTasks}
                           deleteTask={deleteTask}/>
         </div>
     )
