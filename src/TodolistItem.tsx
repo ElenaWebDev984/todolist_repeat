@@ -50,7 +50,10 @@ export const TodolistItem = ({
                        placeholder='Max 15 characters'
                        onChange={(e) => setTaskTitle(e.currentTarget.value)}/>
                 <Button title='+'
-                        onClick={() => createTask(taskTitle)}
+                        onClick={() => {
+                            createTask(taskTitle)
+                            setTaskTitle('')
+                        }}
                         disabled={!taskTitle || taskTitle.length > 15}/>
                 {taskTitle && taskTitle.length <= 15 && <div>Rest {15 - taskTitle.length} characters</div>}
                 {taskTitle.length > 15 && <div style={{color: 'red'}}>Title is too long</div>}
