@@ -1,9 +1,11 @@
 import {Button} from "./Button.tsx";
+import {FilterValues} from "./App.tsx";
 
 type TodolistItemTypes = {
     title: string
     tasks: Task[]
     deleteTask: (taskId: Task['id']) => void
+    changeTodolistFilter: (filter: FilterValues) => void
 }
 
 export type Task = {
@@ -12,7 +14,12 @@ export type Task = {
     isDone: boolean
 }
 
-export const TodolistItem = ({title, tasks, deleteTask}: TodolistItemTypes) => {
+export const TodolistItem = ({
+                                 title,
+                                 tasks,
+                                 deleteTask,
+                                 changeTodolistFilter,
+                             }: TodolistItemTypes) => {
 
     const tasksList = tasks.length === 0
         ? <span>Tasks list is empty</span>
@@ -39,9 +46,12 @@ export const TodolistItem = ({title, tasks, deleteTask}: TodolistItemTypes) => {
             </div>
             {tasksList}
             <div>
-                <Button title='All'/>
-                <Button title='Active'/>
-                <Button title='Completed'/>
+                <Button title='All'
+                        onClick={() => changeTodolistFilter('all')}/>
+                <Button title='Active'
+                        onClick={() => changeTodolistFilter('active')}/>
+                <Button title='Completed'
+                        onClick={() => changeTodolistFilter('completed')}/>
             </div>
         </div>
     );

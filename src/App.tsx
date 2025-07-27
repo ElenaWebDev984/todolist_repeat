@@ -2,7 +2,7 @@ import './App.css'
 import {Task, TodolistItem} from "./TodolistItem.tsx";
 import {useState} from "react";
 
-type FilterValues = 'all' | 'active' | 'completed'
+export type FilterValues = 'all' | 'active' | 'completed'
 
 
 export const App = () => {
@@ -25,9 +25,11 @@ export const App = () => {
     }
 
 
-
     //   TODO UI
     const [filter, setFilter] = useState<FilterValues>('all')
+    const changeTodolistFilter = (filter: FilterValues) => {
+        setFilter(filter)
+    }
 
     let filteredTasks = tasks
     if (filter === 'active') {
@@ -42,7 +44,8 @@ export const App = () => {
         <div className="app">
             <TodolistItem title={todolistTitle}
                           tasks={filteredTasks}
-                          deleteTask={deleteTask}/>
+                          deleteTask={deleteTask}
+                          changeTodolistFilter={changeTodolistFilter}/>
         </div>
     )
 }
