@@ -15,8 +15,10 @@ export const App = () => {
     ])
 
     const deleteTask = (taskId: Task['id']) => {
-        tasks = tasks.filter(task => task.id !== taskId)
-        console.log(tasks)
+        // TODO create next state
+        const nextState = tasks.filter(task => task.id !== taskId)
+        // TODO set state
+        setTasks(nextState)
     }
 
 
