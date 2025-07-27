@@ -9,7 +9,7 @@ type TodolistItemTypes = {
 }
 
 export type Task = {
-    id: number
+    id: string
     title: string
     isDone: boolean
 }
