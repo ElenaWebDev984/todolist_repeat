@@ -31,13 +31,19 @@ export const App = () => {
         setFilter(filter)
     }
 
-    let filteredTasks = tasks
-    if (filter === 'active') {
-        filteredTasks = tasks.filter(task => !task.isDone)
+    const getFilteredTasks = (tasks: Task[], filter: FilterValues): Task[] => {
+        let filteredTasks = tasks
+        if (filter === 'active') {
+            filteredTasks = tasks.filter(task => !task.isDone)
+        }
+        if (filter === 'completed') {
+            filteredTasks = tasks.filter(task => task.isDone)
+        }
+        return filteredTasks
     }
-    if (filter === 'completed') {
-        filteredTasks = tasks.filter(task => task.isDone)
-    }
+
+    const filteredTasks: Task[] = getFilteredTasks(tasks, filter)
+
 
 
     return (
