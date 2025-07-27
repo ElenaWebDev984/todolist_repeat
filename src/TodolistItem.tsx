@@ -1,5 +1,6 @@
 import {Button} from "./Button.tsx";
 import {FilterValues} from "./App.tsx";
+import {useRef} from "react";
 
 type TodolistItemTypes = {
     title: string
@@ -23,6 +24,9 @@ export const TodolistItem = ({
                                  createTask,
                              }: TodolistItemTypes) => {
 
+    const inputRef = useRef<HTMLInputElement>(null);
+    console.log(inputRef)
+
     const tasksList = tasks.length === 0
         ? <span>Tasks list is empty</span>
         : <ul>
@@ -43,9 +47,14 @@ export const TodolistItem = ({
         <div>
             <h3>{title}</h3>
             <div>
-                <input/>
+                <input ref={inputRef}/>
                 <Button title='+'
-                onClick={() => createTask('New task')}/>
+                        onClick={() => {
+                            if (inputRef.current) {
+                                createTask(inputRef.current.value)
+                                inputRef.current.value = ''
+                            }
+                        }}/>
             </div>
             {tasksList}
             <div>
