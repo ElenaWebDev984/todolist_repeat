@@ -52,6 +52,7 @@ export const TodolistItem = ({
                         onClick={() => {
                             if (inputRef.current) {
                                 createTask(inputRef.current.value)
+                                // TODO Очистка input
                                 inputRef.current.value = ''
                             }
                         }}/>
