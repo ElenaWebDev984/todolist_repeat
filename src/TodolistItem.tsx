@@ -41,6 +41,11 @@ export const TodolistItem = ({
             })}
         </ul>
 
+    const createTaskHandler = () => {
+        createTask(taskTitle)
+        setTaskTitle('')
+    }
+
 
     return (
         <div>
@@ -48,12 +53,14 @@ export const TodolistItem = ({
             <div>
                 <input value={taskTitle}
                        placeholder='Max 15 characters'
-                       onChange={(e) => setTaskTitle(e.currentTarget.value)}/>
+                       onChange={(e) => setTaskTitle(e.currentTarget.value)}
+                       onKeyDown={(e) => {
+                           if (e.key === 'Enter') {
+                                createTaskHandler()
+                           }
+                       }}/>
                 <Button title='+'
-                        onClick={() => {
-                            createTask(taskTitle)
-                            setTaskTitle('')
-                        }}
+                        onClick={createTaskHandler}
                         disabled={!taskTitle || taskTitle.length > 15}/>
                 {taskTitle && taskTitle.length <= 15 && <div>Rest {15 - taskTitle.length} characters</div>}
                 {taskTitle.length > 15 && <div style={{color: 'red'}}>Title is too long</div>}
