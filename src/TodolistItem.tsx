@@ -1,6 +1,6 @@
 import {Button} from "./Button.tsx";
 import {FilterValues} from "./App.tsx";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type TodolistItemTypes = {
     title: string
@@ -48,6 +48,13 @@ export const TodolistItem = ({
 
     const onChangeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => setTaskTitle(e.currentTarget.value)
 
+    const onKeyDownCreateTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter' && addTaskCondition) {
+            createTaskHandler()
+        }
+    }
+
+
     const addTaskCondition = Boolean(taskTitle && taskTitle.length <= 15)
 
 
@@ -58,11 +65,8 @@ export const TodolistItem = ({
                 <input value={taskTitle}
                        placeholder='Max 15 characters'
                        onChange={onChangeTaskTitleHandler}
-                       onKeyDown={(e) => {
-                           if (e.key === 'Enter' && addTaskCondition) {
-                                createTaskHandler()
-                           }
-                       }}/>
+                       onKeyDown={onKeyDownCreateTaskHandler}
+                    />
                 <Button title='+'
                         onClick={createTaskHandler}
                         disabled={!addTaskCondition}/>
