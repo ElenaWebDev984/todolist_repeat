@@ -65,7 +65,7 @@ export const TodolistItem = ({
             <h3>{title}</h3>
             <div>
                 <input value={taskTitle}
-                       placeholder='Max 15 characters'
+                       placeholder={`Max ${maxTaskTitleLength} characters`}
                        onChange={onChangeTaskTitleHandler}
                        onKeyDown={onKeyDownCreateTaskHandler}
                 />
