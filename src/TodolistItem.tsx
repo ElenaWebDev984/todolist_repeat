@@ -1,6 +1,6 @@
 import {Button} from "./Button.tsx";
 import {FilterValues} from "./App.tsx";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 
 type TodolistItemTypes = {
     title: string
@@ -46,7 +46,9 @@ export const TodolistItem = ({
         setTaskTitle('')
     }
 
-    const taskAddCondition = Boolean(taskTitle && taskTitle.length <= 15)
+    const onChangeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => setTaskTitle(e.currentTarget.value)
+
+    const addTaskCondition = Boolean(taskTitle && taskTitle.length <= 15)
 
 
     return (
@@ -55,15 +57,15 @@ export const TodolistItem = ({
             <div>
                 <input value={taskTitle}
                        placeholder='Max 15 characters'
-                       onChange={(e) => setTaskTitle(e.currentTarget.value)}
+                       onChange={onChangeTaskTitleHandler}
                        onKeyDown={(e) => {
-                           if (e.key === 'Enter' && taskAddCondition) {
+                           if (e.key === 'Enter' && addTaskCondition) {
                                 createTaskHandler()
                            }
                        }}/>
                 <Button title='+'
                         onClick={createTaskHandler}
-                        disabled={!taskAddCondition}/>
+                        disabled={!addTaskCondition}/>
                 {taskTitle && taskTitle.length <= 15 && <div>Rest {15 - taskTitle.length} characters</div>}
                 {taskTitle.length > 15 && <div style={{color: 'red'}}>Title is too long</div>}
             </div>
