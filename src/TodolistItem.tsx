@@ -26,6 +26,8 @@ export const TodolistItem = ({
 
     const [taskTitle, setTaskTitle] = useState('')
 
+    const maxTaskTitleLength = 15
+
     const tasksList = tasks.length === 0
         ? <span>Tasks list is empty</span>
         : <ul>
@@ -55,7 +57,7 @@ export const TodolistItem = ({
     }
 
 
-    const addTaskCondition = Boolean(taskTitle && taskTitle.length <= 15)
+    const addTaskCondition = Boolean(taskTitle && taskTitle.length <= maxTaskTitleLength)
 
 
     return (
@@ -66,12 +68,12 @@ export const TodolistItem = ({
                        placeholder='Max 15 characters'
                        onChange={onChangeTaskTitleHandler}
                        onKeyDown={onKeyDownCreateTaskHandler}
-                    />
+                />
                 <Button title='+'
                         onClick={createTaskHandler}
                         disabled={!addTaskCondition}/>
-                {taskTitle && taskTitle.length <= 15 && <div>Rest {15 - taskTitle.length} characters</div>}
-                {taskTitle.length > 15 && <div style={{color: 'red'}}>Title is too long</div>}
+                {taskTitle && taskTitle.length <= maxTaskTitleLength && <div>Rest {maxTaskTitleLength - taskTitle.length} characters</div>}
+                {taskTitle.length > maxTaskTitleLength && <div style={{color: 'red'}}>Title is too long</div>}
             </div>
             {tasksList}
             <div>
