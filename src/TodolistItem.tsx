@@ -8,6 +8,7 @@ type TodolistItemTypes = {
     deleteTask: (taskId: Task['id']) => void
     changeTodolistFilter: (filter: FilterValues) => void
     createTask: (title: string) => void
+    changeTaskStatusHandler: (taskId: Task['id'], newStatus: boolean) => void
 }
 
 export type Task = {
@@ -22,6 +23,7 @@ export const TodolistItem = ({
                                  deleteTask,
                                  changeTodolistFilter,
                                  createTask,
+                                 changeTaskStatusHandler,
                              }: TodolistItemTypes) => {
 
     const [taskTitle, setTaskTitle] = useState('')
@@ -34,7 +36,9 @@ export const TodolistItem = ({
             {tasks.map(task => {
                 return (
                     <li>
-                        <input type="checkbox" checked={task.isDone}/>
+                        <input type="checkbox"
+                               checked={task.isDone}
+                               onChange={(e) => changeTaskStatusHandler(task.id, e.currentTarget.checked)}/>
                         <span>{task.title}</span>
                         <Button title='x'
                                 onClick={() => deleteTask(task.id)}/>
@@ -72,7 +76,8 @@ export const TodolistItem = ({
                 <Button title='+'
                         onClick={createTaskHandler}
                         disabled={!addTaskCondition}/>
-                {taskTitle && taskTitle.length <= maxTaskTitleLength && <div>Rest {maxTaskTitleLength - taskTitle.length} characters</div>}
+                {taskTitle && taskTitle.length <= maxTaskTitleLength &&
+                    <div>Rest {maxTaskTitleLength - taskTitle.length} characters</div>}
                 {taskTitle.length > maxTaskTitleLength && <div style={{color: 'red'}}>Title is too long</div>}
             </div>
             {tasksList}
