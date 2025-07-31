@@ -9,6 +9,7 @@ type TodolistItemTypes = {
     changeTodolistFilter: (filter: FilterValues) => void
     createTask: (title: string) => void
     changeTaskStatusHandler: (taskId: Task['id'], newStatus: boolean) => void
+    filter: FilterValues
 }
 
 export type Task = {
@@ -24,6 +25,7 @@ export const TodolistItem = ({
                                  changeTodolistFilter,
                                  createTask,
                                  changeTaskStatusHandler,
+                                 filter,
                              }: TodolistItemTypes) => {
 
     const [taskTitle, setTaskTitle] = useState('')
@@ -83,13 +85,13 @@ export const TodolistItem = ({
             {tasksList}
             <div>
                 <Button title='All'
-                        // classNames={}
+                        classNames={filter === 'all' ? 'btn-filter-active' : ''}
                         onClickHandler={() => changeTodolistFilter('all')}/>
                 <Button title='Active'
-                        // classNames={}
+                        classNames={filter === 'active' ? 'btn-filter-active' : ''}
                         onClickHandler={() => changeTodolistFilter('active')}/>
                 <Button title='Completed'
-                        classNames='btn-filter-active'
+                        classNames={filter === 'completed' ? 'btn-filter-active' : ''}
                         onClickHandler={() => changeTodolistFilter('completed')}/>
             </div>
         </div>
