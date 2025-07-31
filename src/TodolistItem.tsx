@@ -65,7 +65,7 @@ export const TodolistItem = ({
 
 
     return (
-        <div>
+        <div className='todolist'>
             <h3>{title}</h3>
             <div>
                 <input value={taskTitle}
