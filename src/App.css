@@ -11,7 +11,7 @@
   padding: 15px;
   border: 2px solid gray;
   border-radius: 5px;
-  background-color: #00c4ff;
+  background-color: #6cd6f7;
 }
 
 .task {
@@ -19,5 +19,6 @@
 }
 
 .task-done {
-  opacity: 0.5;
+  /*color: #565857;*/
+  /*opacity: 0.5;*/
 }
