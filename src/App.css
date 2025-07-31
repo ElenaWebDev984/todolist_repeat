@@ -30,3 +30,8 @@
   border-radius: 3px;
   color: white;
 }
+
+.error {
+ outline: none;
+  border: 2px solid red;
+}

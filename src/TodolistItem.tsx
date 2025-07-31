@@ -29,7 +29,7 @@ export const TodolistItem = ({
                              }: TodolistItemTypes) => {
 
     const [taskTitle, setTaskTitle] = useState('')
-
+    const [error, setError] = useState(false)
     const maxTaskTitleLength = 15
 
     const tasksList = tasks.length === 0
@@ -50,11 +50,19 @@ export const TodolistItem = ({
         </ul>
 
     const createTaskHandler = () => {
-        createTask(taskTitle)
+        const trimmedTitle = taskTitle.trim()
+        if(trimmedTitle) {
+            createTask(trimmedTitle)
+        } else {
+            setError(true)
+        }
         setTaskTitle('')
     }
 
-    const onChangeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => setTaskTitle(e.currentTarget.value)
+    const onChangeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        error && setError(false)
+        setTaskTitle(e.currentTarget.value)
+    }
 
     const onKeyDownCreateTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && addTaskCondition) {
@@ -74,6 +82,7 @@ export const TodolistItem = ({
                        placeholder={`Max ${maxTaskTitleLength} characters`}
                        onChange={onChangeTaskTitleHandler}
                        onKeyDown={onKeyDownCreateTaskHandler}
+                       className={error ? 'error' : ''}
                 />
                 <Button title='+'
                         onClickHandler={createTaskHandler}
