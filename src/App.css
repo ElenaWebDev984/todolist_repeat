@@ -23,3 +23,10 @@
   /*opacity: 0.5;*/
   text-decoration: line-through;
 }
+
+.btn-filter-active {
+  background-color: #0f2dcd;
+  border: 2px solid #0f2dcd;
+  border-radius: 3px;
+  color: white;
+}

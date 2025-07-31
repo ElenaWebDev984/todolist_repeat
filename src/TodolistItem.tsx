@@ -41,7 +41,7 @@ export const TodolistItem = ({
                                onChange={(e) => changeTaskStatusHandler(task.id, e.currentTarget.checked)}/>
                         <span className={task.isDone ? 'task-done' : 'task'}>{task.title}</span>
                         <Button title='x'
-                                onClick={() => deleteTask(task.id)}/>
+                                onClickHandler={() => deleteTask(task.id)}/>
                     </li>
                 )
             })}
@@ -74,7 +74,7 @@ export const TodolistItem = ({
                        onKeyDown={onKeyDownCreateTaskHandler}
                 />
                 <Button title='+'
-                        onClick={createTaskHandler}
+                        onClickHandler={createTaskHandler}
                         disabled={!addTaskCondition}/>
                 {taskTitle && taskTitle.length <= maxTaskTitleLength &&
                     <div>Rest {maxTaskTitleLength - taskTitle.length} characters</div>}
@@ -83,11 +83,14 @@ export const TodolistItem = ({
             {tasksList}
             <div>
                 <Button title='All'
-                        onClick={() => changeTodolistFilter('all')}/>
+                        // classNames={}
+                        onClickHandler={() => changeTodolistFilter('all')}/>
                 <Button title='Active'
-                        onClick={() => changeTodolistFilter('active')}/>
+                        // classNames={}
+                        onClickHandler={() => changeTodolistFilter('active')}/>
                 <Button title='Completed'
-                        onClick={() => changeTodolistFilter('completed')}/>
+                        classNames='btn-filter-active'
+                        onClickHandler={() => changeTodolistFilter('completed')}/>
             </div>
         </div>
     );
