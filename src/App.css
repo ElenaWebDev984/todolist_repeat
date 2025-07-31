@@ -21,4 +21,5 @@
 .task-done {
   /*color: #565857;*/
   /*opacity: 0.5;*/
+  text-decoration: line-through;
 }
