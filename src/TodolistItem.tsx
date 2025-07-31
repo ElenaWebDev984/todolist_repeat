@@ -90,6 +90,7 @@ export const TodolistItem = ({
                 {taskTitle && taskTitle.length <= maxTaskTitleLength &&
                     <div>Rest {maxTaskTitleLength - taskTitle.length} characters</div>}
                 {taskTitle.length > maxTaskTitleLength && <div style={{color: 'red'}}>Title is too long</div>}
+                {error && <div className='error-message'>Title is required</div>}
             </div>
             {tasksList}
             <div>
