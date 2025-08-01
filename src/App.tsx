@@ -11,16 +11,27 @@ export type Todolist = {
     filter: FilterValues
 }
 
+export type TasksState = {
+    [todolistId: string]: Task[]
+}
+
 
 export const App = () => {
 
-    const [todolists, setTodolists] = useState<Todolist []>([
-        {id:v1(), title: 'What to learn', filter: 'all'},
-        {id:v1(), title: 'What to buy', filter: 'all'},
+    const todolistId_1 = v1()
+    const todolistId_2 = v1()
+
+    const [todolists, setTodolists] = useState<Todolist[]>([
+        {id: todolistId_1, title: 'What to learn', filter: 'all'},
+        {id: todolistId_2, title: 'What to buy', filter: 'all'},
     ])
 
+    const [tasks, setTasks] = useState<TasksState>({
+
+    })
+
+
     // TODO BLL
-    const todolistTitle = 'What to learn'
 
     const [tasks, setTasks] = useState<Task[]>([
         {id: v1(), title: 'HTML&CSS', isDone: true},
@@ -59,7 +70,7 @@ export const App = () => {
 
 
     //   TODO UI - Read
-    const [filter, setFilter] = useState<FilterValues>('all')
+
     const changeTodolistFilter = (filter: FilterValues) => {
         setFilter(filter)
     }
