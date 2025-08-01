@@ -5,8 +5,19 @@ import {v1} from "uuid";
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
+export type Todolist = {
+    id: string
+    title: string
+    filter: FilterValues
+}
+
 
 export const App = () => {
+
+    const [todolists, setTodolists] = useState<Todolist []>([
+        {id:v1(), title: 'What to learn', filter: 'all'},
+        {id:v1(), title: 'What to buy', filter: 'all'},
+    ])
 
     // TODO BLL
     const todolistTitle = 'What to learn'
