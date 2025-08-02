@@ -82,6 +82,11 @@ export const App = () => {
         // setTasks({...tasks, [todolistId]: tasks[todolistId].filter(task => task.id !== taskId)})
     }
 
+    const deleteTodolist = (todolistId: string) => {
+        const nextState = todolists.filter(todolist => todolist.id !== todolistId)
+        setTodolists(nextState)
+    }
+
 
     //   TODO UI - Read
 
