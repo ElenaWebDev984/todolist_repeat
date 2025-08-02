@@ -3,6 +3,7 @@ import {FilterValues, Todolist} from "./App.tsx";
 import {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type TodolistItemTypes = {
+    todolistId: Todolist['id']
     title: string
     tasks: Task[]
     deleteTask: (taskId: Task['id'], todolistId: Todolist['id']) => void
@@ -10,6 +11,7 @@ type TodolistItemTypes = {
     createTask: (title: string, todolistId: Todolist['id']) => void
     changeTaskStatusHandler: (taskId: Task['id'], newStatus: boolean, todolistId: Todolist['id']) => void
     filter: FilterValues
+    deleteTodolist: (todolistId: Todolist['id']) => void
 }
 
 export type Task = {
