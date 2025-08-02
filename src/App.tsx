@@ -44,26 +44,27 @@ export const App = () => {
 
     // TODO - Create
 
-    const createTask = (title: string) => {
+    const createTask = (title: string, todolistId: string) => {
         const newTask: Task = {
             id: v1(),
             title: title,
             isDone: false,
         }
-        const nextState = [...tasks, newTask]
-        setTasks(nextState)
+        const updatedTasks =[...tasks[todolistId], newTask]
+        const nextTasksState = {...tasks, [todolistId]:updatedTasks}
+        setTasks(nextTasksState)
     }
 
     // TODO - Update
 
-    const changeTaskStatusHandler = (taskId: Task['id'], newStatus: boolean) => {
+    const changeTaskStatusHandler = (taskId: Task['id'], newStatus: boolean, todolistId: string) => {
         const nextState = tasks.map(task => task.id === taskId ? {...task, isDone: newStatus} : task)
         setTasks(nextState)
     }
 
     // TODO - Delete:
 
-    const deleteTask = (taskId: Task['id']) => {
+    const deleteTask = (taskId: Task['id'], todolistId: string) => {
         // TODO create next state
         // TODO immutable change data
         const nextState = tasks.filter(task => task.id !== taskId)
