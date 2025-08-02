@@ -1,14 +1,14 @@
 import {Button} from "./Button.tsx";
-import {FilterValues} from "./App.tsx";
+import {FilterValues, Todolist} from "./App.tsx";
 import {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type TodolistItemTypes = {
     title: string
     tasks: Task[]
-    deleteTask: (taskId: Task['id'], todolistId: string) => void
-    changeTodolistFilter: (filter: FilterValues, todolistId: string) => void
-    createTask: (title: string, todolistId: string) => void
-    changeTaskStatusHandler: (taskId: Task['id'], newStatus: boolean, todolistId: string) => void
+    deleteTask: (taskId: Task['id'], todolistId: Todolist['id']) => void
+    changeTodolistFilter: (filter: FilterValues, todolistId: Todolist['id']) => void
+    createTask: (title: string, todolistId: Todolist['id']) => void
+    changeTaskStatusHandler: (taskId: Task['id'], newStatus: boolean, todolistId: Todolist['id']) => void
     filter: FilterValues
 }
 

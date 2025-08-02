@@ -44,7 +44,7 @@ export const App = () => {
 
     // TODO - Create
 
-    const createTask = (title: string, todolistId: string) => {
+    const createTask = (title: string, todolistId: Todolist['id']) => {
         // TODO variant 1
         const newTask: Task = {
             id: v1(),
@@ -60,7 +60,7 @@ export const App = () => {
 
     // TODO - Update
 
-    const changeTaskStatusHandler = (taskId: Task['id'], newStatus: boolean, todolistId: string) => {
+    const changeTaskStatusHandler = (taskId: Task['id'], newStatus: boolean, todolistId: Todolist['id']) => {
         // TODO variant 1
         const todolistTasks = tasks[todolistId]
         const updatedTasks = todolistTasks.map(task => task.id === taskId ? {...task, isDone: newStatus} : task)
@@ -72,7 +72,7 @@ export const App = () => {
 
     // TODO - Delete:
 
-    const deleteTask = (taskId: Task['id'], todolistId: string) => {
+    const deleteTask = (taskId: Task['id'], todolistId: Todolist['id']) => {
         // TODO variant 1
         const todolistTasks = tasks[todolistId]
         const updatedTasks = todolistTasks.filter(task => task.id !== taskId)
@@ -82,12 +82,12 @@ export const App = () => {
         // setTasks({...tasks, [todolistId]: tasks[todolistId].filter(task => task.id !== taskId)})
     }
 
-    const changeTodolistFilter = (filter: FilterValues, todolistId: string) => {
+    const changeTodolistFilter = (filter: FilterValues, todolistId: Todolist['id']) => {
         const nextState = todolists.map(todolist => todolist.id === todolistId ? {...todolist, filter} : todolist)
         setTodolists(nextState)
     }
 
-    const deleteTodolist = (todolistId: string) => {
+    const deleteTodolist = (todolistId: Todolist['id']) => {
         const nextState = todolists.filter(todolist => todolist.id !== todolistId)
         setTodolists(nextState)
     }
