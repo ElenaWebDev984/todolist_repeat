@@ -78,6 +78,8 @@ export const App = () => {
         const updatedTasks = todolistTasks.filter(task => task.id !== taskId)
         const nextState = {...tasks, [todolistId]:updatedTasks}
         setTasks(nextState)
+        // TODO variant 2
+        // setTasks({...tasks, [todolistId]: tasks[todolistId].filter(task => task.id !== taskId)})
     }
 
 
