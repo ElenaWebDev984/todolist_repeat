@@ -119,13 +119,6 @@ export const App = () => {
     })
 
 
-    // const getFilteredTasks = (tasks: Task[], filter: FilterValues): Task[] => {
-    //
-    //     return filteredTasks
-    // }
-    //
-    // const filteredTasks: Task[] = getFilteredTasks(tasks, filter)
-
 
     return (
         <div className="app">
