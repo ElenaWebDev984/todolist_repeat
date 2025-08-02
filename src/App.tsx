@@ -51,7 +51,7 @@ export const App = () => {
             title: title,
             isDone: false,
         }
-        const updatedTasks =[...tasks[todolistId], newTask]
+        const updatedTasks = [...tasks[todolistId], newTask]
         const nextTasksState = {...tasks, [todolistId]:updatedTasks}
         setTasks(nextTasksState)
         // TODO variant 2
@@ -61,8 +61,12 @@ export const App = () => {
     // TODO - Update
 
     const changeTaskStatusHandler = (taskId: Task['id'], newStatus: boolean, todolistId: string) => {
-        const nextState = tasks.map(task => task.id === taskId ? {...task, isDone: newStatus} : task)
+        // TODO variant 1
+        const todolistTasks = tasks[todolistId]
+        const updatedTasks = todolistTasks.map(task => task.id === taskId ? {...task, isDone: newStatus} : task)
+        const nextState = {...tasks, [todolistId]:updatedTasks}
         setTasks(nextState)
+        
     }
 
     // TODO - Delete:
