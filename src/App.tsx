@@ -52,7 +52,7 @@ export const App = () => {
             isDone: false,
         }
         const updatedTasks = [...tasks[todolistId], newTask]
-        const nextTasksState = {...tasks, [todolistId]:updatedTasks}
+        const nextTasksState = {...tasks, [todolistId]: updatedTasks}
         setTasks(nextTasksState)
         // TODO variant 2
         // setTasks({...tasks, [todolistId]: [...tasks[todolistId], {id: v1(), title, isDone: false}]})
@@ -64,7 +64,7 @@ export const App = () => {
         // TODO variant 1
         const todolistTasks = tasks[todolistId]
         const updatedTasks = todolistTasks.map(task => task.id === taskId ? {...task, isDone: newStatus} : task)
-        const nextState = {...tasks, [todolistId]:updatedTasks}
+        const nextState = {...tasks, [todolistId]: updatedTasks}
         setTasks(nextState)
         // TODO variant 2
         // setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, isDone: newStatus} : task)})
@@ -76,7 +76,7 @@ export const App = () => {
         // TODO variant 1
         const todolistTasks = tasks[todolistId]
         const updatedTasks = todolistTasks.filter(task => task.id !== taskId)
-        const nextState = {...tasks, [todolistId]:updatedTasks}
+        const nextState = {...tasks, [todolistId]: updatedTasks}
         setTasks(nextState)
         // TODO variant 2
         // setTasks({...tasks, [todolistId]: tasks[todolistId].filter(task => task.id !== taskId)})
@@ -122,7 +122,7 @@ export const App = () => {
 
     return (
         <div className="app">
-
+            {todolistsComponents}
         </div>
     )
 }
