@@ -91,29 +91,28 @@ export const App = () => {
     //   TODO UI - Read
 
     const todolistsComponents = todolists.map(todolist => {
+        let filteredTasks = tasks[todolist.id]
+        if (todolist.filter === 'active') {
+            filteredTasks = tasks[todolist.id].filter(task => !task.isDone)
+        }
+        if (todolist.filter === 'completed') {
+            filteredTasks = tasks[todolist.id].filter(task => task.isDone)
+        }
+
         return (
-            <TodolistItem title={todolistTitle}
+            <TodolistItem title={todolist.title}
                           tasks={filteredTasks}
                           deleteTask={deleteTask}
                           changeTodolistFilter={changeTodolistFilter}
                           createTask={createTask}
                           changeTaskStatusHandler={changeTaskStatusHandler}
-                          filter={filter}/>
+                          filter={todolist.filter}/>
         )
     })
 
-    const changeTodolistFilter = (filter: FilterValues) => {
-        setFilter(filter)
-    }
 
     const getFilteredTasks = (tasks: Task[], filter: FilterValues): Task[] => {
-        let filteredTasks = tasks
-        if (filter === 'active') {
-            filteredTasks = tasks.filter(task => !task.isDone)
-        }
-        if (filter === 'completed') {
-            filteredTasks = tasks.filter(task => task.isDone)
-        }
+
         return filteredTasks
     }
 
