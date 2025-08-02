@@ -82,7 +82,10 @@ export const TodolistItem = ({
 
     return (
         <div className='todolist'>
-            <h3>{title}</h3>
+            <h3>
+                {title}
+                <Button title='delete' onClickHandler={() => deleteTodolist(todolistId)}/>
+            </h3>
             <div>
                 <input value={taskTitle}
                        placeholder={`Max ${maxTaskTitleLength} characters`}
