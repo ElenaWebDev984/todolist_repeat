@@ -90,6 +90,18 @@ export const App = () => {
 
     //   TODO UI - Read
 
+    const todolistsComponents = todolists.map(todolist => {
+        return (
+            <TodolistItem title={todolistTitle}
+                          tasks={filteredTasks}
+                          deleteTask={deleteTask}
+                          changeTodolistFilter={changeTodolistFilter}
+                          createTask={createTask}
+                          changeTaskStatusHandler={changeTaskStatusHandler}
+                          filter={filter}/>
+        )
+    })
+
     const changeTodolistFilter = (filter: FilterValues) => {
         setFilter(filter)
     }
@@ -110,13 +122,7 @@ export const App = () => {
 
     return (
         <div className="app">
-            <TodolistItem title={todolistTitle}
-                          tasks={filteredTasks}
-                          deleteTask={deleteTask}
-                          changeTodolistFilter={changeTodolistFilter}
-                          createTask={createTask}
-                          changeTaskStatusHandler={changeTaskStatusHandler}
-                          filter={filter}/>
+
         </div>
     )
 }
