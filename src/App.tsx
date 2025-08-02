@@ -45,6 +45,7 @@ export const App = () => {
     // TODO - Create
 
     const createTask = (title: string, todolistId: string) => {
+        // TODO variant 1
         const newTask: Task = {
             id: v1(),
             title: title,
@@ -53,6 +54,8 @@ export const App = () => {
         const updatedTasks =[...tasks[todolistId], newTask]
         const nextTasksState = {...tasks, [todolistId]:updatedTasks}
         setTasks(nextTasksState)
+        // TODO variant 2
+        // setTasks({...tasks, [todolistId]: [...tasks[todolistId], {id: v1(), title, isDone: false}]})
     }
 
     // TODO - Update
