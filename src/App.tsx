@@ -73,10 +73,10 @@ export const App = () => {
     // TODO - Delete:
 
     const deleteTask = (taskId: Task['id'], todolistId: string) => {
-        // TODO create next state
-        // TODO immutable change data
-        const nextState = tasks.filter(task => task.id !== taskId)
-        // TODO set next state
+        // TODO variant 1
+        const todolistTasks = tasks[todolistId]
+        const updatedTasks = todolistTasks.filter(task => task.id !== taskId)
+        const nextState = {...tasks, [todolistId]:updatedTasks}
         setTasks(nextState)
     }
 
