@@ -24,10 +24,12 @@ export const TodolistItem = ({
                                  title,
                                  tasks,
                                  deleteTask,
-                                 changeTodolistFilter,
                                  createTask,
                                  changeTaskStatusHandler,
+                                 changeTodolistFilter,
                                  filter,
+                                 todolistId,
+                                 deleteTodolist,
                              }: TodolistItemTypes) => {
 
     const [taskTitle, setTaskTitle] = useState('')
@@ -42,10 +44,10 @@ export const TodolistItem = ({
                     <li>
                         <input type="checkbox"
                                checked={task.isDone}
-                               onChange={(e) => changeTaskStatusHandler(task.id, e.currentTarget.checked)}/>
+                               onChange={(e) => changeTaskStatusHandler(task.id, e.currentTarget.checked, todolistId)}/>
                         <span className={task.isDone ? 'task-done' : 'task'}>{task.title}</span>
                         <Button title='x'
-                                onClickHandler={() => deleteTask(task.id)}/>
+                                onClickHandler={() => deleteTask(task.id, todolistId)}/>
                     </li>
                 )
             })}
@@ -53,8 +55,8 @@ export const TodolistItem = ({
 
     const createTaskHandler = () => {
         const trimmedTitle = taskTitle.trim()
-        if(trimmedTitle) {
-            createTask(trimmedTitle)
+        if (trimmedTitle) {
+            createTask(trimmedTitle, todolistId)
         } else {
             setError(true)
         }
@@ -71,6 +73,8 @@ export const TodolistItem = ({
             createTaskHandler()
         }
     }
+
+    const createChangeFilterHandler = (newFilterValue: FilterValues) => changeTodolistFilter(newFilterValue, todolistId)
 
 
     const addTaskCondition = Boolean(taskTitle && taskTitle.length <= maxTaskTitleLength)
@@ -98,13 +102,13 @@ export const TodolistItem = ({
             <div>
                 <Button title='All'
                         classNames={filter === 'all' ? 'btn-filter-active' : ''}
-                        onClickHandler={() => changeTodolistFilter('all')}/>
+                        onClickHandler={() => createChangeFilterHandler('all')}/>
                 <Button title='Active'
                         classNames={filter === 'active' ? 'btn-filter-active' : ''}
-                        onClickHandler={() => changeTodolistFilter('active')}/>
+                        onClickHandler={() => createChangeFilterHandler('active')}/>
                 <Button title='Completed'
                         classNames={filter === 'completed' ? 'btn-filter-active' : ''}
-                        onClickHandler={() => changeTodolistFilter('completed')}/>
+                        onClickHandler={() => createChangeFilterHandler('completed')}/>
             </div>
         </div>
     );
