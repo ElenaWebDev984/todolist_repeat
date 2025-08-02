@@ -5,10 +5,10 @@ import {ChangeEvent, KeyboardEvent, useState} from "react";
 type TodolistItemTypes = {
     title: string
     tasks: Task[]
-    deleteTask: (taskId: Task['id']) => void
-    changeTodolistFilter: (filter: FilterValues) => void
-    createTask: (title: string) => void
-    changeTaskStatusHandler: (taskId: Task['id'], newStatus: boolean) => void
+    deleteTask: (taskId: Task['id'], todolistId: string) => void
+    changeTodolistFilter: (filter: FilterValues, todolistId: string) => void
+    createTask: (title: string, todolistId: string) => void
+    changeTaskStatusHandler: (taskId: Task['id'], newStatus: boolean, todolistId: string) => void
     filter: FilterValues
 }
 
