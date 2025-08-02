@@ -76,6 +76,7 @@ export const TodolistItem = ({
 
     const createChangeFilterHandler = (newFilterValue: FilterValues) => changeTodolistFilter(newFilterValue, todolistId)
 
+    const deleteTodolistHandler = () => deleteTodolist(todolistId)
 
     const addTaskCondition = Boolean(taskTitle && taskTitle.length <= maxTaskTitleLength)
 
@@ -84,7 +85,7 @@ export const TodolistItem = ({
         <div className='todolist'>
             <h3>
                 {title}
-                <Button title='delete' onClickHandler={() => deleteTodolist(todolistId)}/>
+                <Button title='X' onClickHandler={deleteTodolistHandler}/>
             </h3>
             <div>
                 <input value={taskTitle}
