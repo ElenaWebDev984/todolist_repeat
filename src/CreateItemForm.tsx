@@ -4,13 +4,13 @@ import {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type CreateItemFormTypes = {
     createItem: (newItemTitle:string) => void
+    maxItemTitleLength: number
 };
 
-export const CreateItemForm = ({createItem}: CreateItemFormTypes) => {
+export const CreateItemForm = ({createItem, maxItemTitleLength}: CreateItemFormTypes) => {
     const [taskTitle, setTaskTitle] = useState('')
     const [error, setError] = useState(false)
-    const maxTaskTitleLength = 15
-    const addTaskCondition = Boolean(taskTitle && taskTitle.length <= maxTaskTitleLength)
+    const addTaskCondition = Boolean(taskTitle && taskTitle.length <= maxItemTitleLength)
 
     const onChangeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
         error && setError(false)
@@ -38,7 +38,7 @@ export const CreateItemForm = ({createItem}: CreateItemFormTypes) => {
     return (
         <div>
             <input value={taskTitle}
-                   placeholder={`Max ${maxTaskTitleLength} characters`}
+                   placeholder={`Max ${maxItemTitleLength} characters`}
                    onChange={onChangeTaskTitleHandler}
                    onKeyDown={onKeyDownCreateTaskHandler}
                    className={error ? 'error' : ''}
@@ -46,9 +46,9 @@ export const CreateItemForm = ({createItem}: CreateItemFormTypes) => {
             <Button title='+'
                     onClickHandler={createTaskHandler}
                     disabled={!addTaskCondition}/>
-            {taskTitle && taskTitle.length <= maxTaskTitleLength &&
-                <div>Rest {maxTaskTitleLength - taskTitle.length} characters</div>}
-            {taskTitle.length > maxTaskTitleLength && <div style={{color: 'red'}}>Title is too long</div>}
+            {taskTitle && taskTitle.length <= maxItemTitleLength &&
+                <div>Rest {maxItemTitleLength - taskTitle.length} characters</div>}
+            {taskTitle.length > maxItemTitleLength && <div style={{color: 'red'}}>Title is too long</div>}
             {error && <div className='error-message'>Title is required</div>}
         </div>
     );
