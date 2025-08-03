@@ -92,6 +92,17 @@ export const App = () => {
         setTodolists(nextState)
     }
 
+    const createTodolist = (title: string) => {
+        const newTodolistId = v1()
+        const newTodolist: Todolist = {
+            id: newTodolistId,
+            title: title,
+            filter: 'all',
+        }
+        const nextState = [...todolists, newTodolist]
+        setTodolists(nextState)
+    }
+
 
     //   TODO UI - Read
 
