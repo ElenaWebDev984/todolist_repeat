@@ -1,0 +1,41 @@
+.app {
+  padding: 30px;
+  display: flex;
+}
+
+.app > div {
+  margin-right: 50px;
+}
+
+.todolist {
+  padding: 15px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: #6cd6f7;
+}
+
+.task {
+  font-weight: bold;
+}
+
+.task-done {
+  /*color: #565857;*/
+  /*opacity: 0.5;*/
+  text-decoration: line-through;
+}
+
+.btn-filter-active {
+  background-color: #0f2dcd;
+  border: 2px solid #0f2dcd;
+  border-radius: 3px;
+  color: white;
+}
+
+.error {
+ outline: none;
+  border: 2px solid red;
+}
+
+.error-message {
+  color: red;
+}
