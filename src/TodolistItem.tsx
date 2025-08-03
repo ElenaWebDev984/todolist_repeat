@@ -1,6 +1,6 @@
 import {Button} from "./Button.tsx";
 import {FilterValues, Todolist} from "./App.tsx";
-import {ChangeEvent, KeyboardEvent, useState} from "react";
+import {CreateItemForm} from "./CreateItemForm.tsx";
 
 type TodolistItemTypes = {
     todolistId: Todolist['id']
@@ -32,9 +32,6 @@ export const TodolistItem = ({
                                  deleteTodolist,
                              }: TodolistItemTypes) => {
 
-    const [taskTitle, setTaskTitle] = useState('')
-    const [error, setError] = useState(false)
-    const maxTaskTitleLength = 15
 
     const tasksList = tasks.length === 0
         ? <span>Tasks list is empty</span>
@@ -53,32 +50,15 @@ export const TodolistItem = ({
             })}
         </ul>
 
-    const createTaskHandler = () => {
-        const trimmedTitle = taskTitle.trim()
-        if (trimmedTitle) {
-            createTask(trimmedTitle, todolistId)
-        } else {
-            setError(true)
-        }
-        setTaskTitle('')
+    const createTaskHandler = (newItemTitle: string) => {
+            createTask(newItemTitle, todolistId)
     }
 
-    const onChangeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        error && setError(false)
-        setTaskTitle(e.currentTarget.value)
-    }
-
-    const onKeyDownCreateTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter' && addTaskCondition) {
-            createTaskHandler()
-        }
-    }
 
     const createChangeFilterHandler = (newFilterValue: FilterValues) => changeTodolistFilter(newFilterValue, todolistId)
 
     const deleteTodolistHandler = () => deleteTodolist(todolistId)
 
-    const addTaskCondition = Boolean(taskTitle && taskTitle.length <= maxTaskTitleLength)
 
 
     return (
@@ -87,21 +67,7 @@ export const TodolistItem = ({
                 {title}
                 <Button title='X' onClickHandler={deleteTodolistHandler}/>
             </h3>
-            <div>
-                <input value={taskTitle}
-                       placeholder={`Max ${maxTaskTitleLength} characters`}
-                       onChange={onChangeTaskTitleHandler}
-                       onKeyDown={onKeyDownCreateTaskHandler}
-                       className={error ? 'error' : ''}
-                />
-                <Button title='+'
-                        onClickHandler={createTaskHandler}
-                        disabled={!addTaskCondition}/>
-                {taskTitle && taskTitle.length <= maxTaskTitleLength &&
-                    <div>Rest {maxTaskTitleLength - taskTitle.length} characters</div>}
-                {taskTitle.length > maxTaskTitleLength && <div style={{color: 'red'}}>Title is too long</div>}
-                {error && <div className='error-message'>Title is required</div>}
-            </div>
+            <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={15} />
             {tasksList}
             <div>
                 <Button title='All'
