@@ -101,6 +101,7 @@ export const App = () => {
         }
         const nextState = [...todolists, newTodolist]
         setTodolists(nextState)
+        setTasks({...tasks, [newTodolistId]: []})
     }
 
 
