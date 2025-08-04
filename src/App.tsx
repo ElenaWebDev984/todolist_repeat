@@ -72,7 +72,7 @@ export const App = () => {
     }
 
     const changeTaskTitle = (taskId: Task['id'], newTitle: Task['title'], todolistId: Todolist['id']) => {
-         setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, title: newTitle} : task)})
+        setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, title: newTitle} : task)})
     }
 
     // TODO - Delete:
@@ -134,18 +134,17 @@ export const App = () => {
                           deleteTask={deleteTask}
                           changeTodolistFilter={changeTodolistFilter}
                           createTask={createTask}
+                          changeTaskTitle={changeTaskTitle}
                           changeTaskStatus={changeTaskStatus}
                           filter={todolist.filter}
-                          deleteTodolist={deleteTodolist}
-                          changeTaskTitle={changeTaskTitle}/>
+                          deleteTodolist={deleteTodolist}/>
         )
     })
 
 
-
     return (
         <div className="app">
-            <CreateItemForm createItem={createTodolist} maxItemTitleLength={10} />
+            <CreateItemForm createItem={createTodolist} maxItemTitleLength={10}/>
             {todolistsComponents}
         </div>
     )
