@@ -92,6 +92,11 @@ export const App = () => {
         setTodolists(nextState)
     }
 
+    const changeTodolistTitle = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
+        const nextState = todolists.map(todolist => todolist.id === todolistId ? {...todolist, title: newTitle} : todolist)
+        setTodolists(nextState)
+    }
+
     const deleteTodolist = (todolistId: Todolist['id']) => {
         const nextState = todolists.filter(todolist => todolist.id !== todolistId)
         setTodolists(nextState)
