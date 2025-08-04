@@ -92,7 +92,7 @@ export const App = () => {
         setTodolists(nextState)
     }
 
-    const changeTodolistTitle = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
+    const changeTodolistTitleHandler = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
         const nextState = todolists.map(todolist => todolist.id === todolistId ? {...todolist, title: newTitle} : todolist)
         setTodolists(nextState)
     }
