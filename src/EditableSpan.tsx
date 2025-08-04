@@ -6,7 +6,7 @@ type EditableSpanTypes = {
 
 export const EditableSpan = ({title}: EditableSpanTypes) => {
     const [isEditMode, setIsEditMode] = useState(false);
-    const [itemTitle, setItemTitle] = useState('');
+    const [itemTitle, setItemTitle] = useState(title);
     const onChangeItemTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setItemTitle(e.currentTarget.value)
     }
@@ -19,6 +19,7 @@ export const EditableSpan = ({title}: EditableSpanTypes) => {
         isEditMode
             ? <input
                 value={itemTitle}
+                onBlur={offEditeMode}
                 onChange={onChangeItemTitleHandler}
             />
             : <span onDoubleClick={onEditeMode}>{title}</span>
