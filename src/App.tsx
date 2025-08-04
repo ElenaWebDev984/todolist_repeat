@@ -61,7 +61,7 @@ export const App = () => {
 
     // TODO - Update
 
-    const changeTaskStatusHandler = (taskId: Task['id'], newStatus: Task['isDone'], todolistId: Todolist['id']) => {
+    const changeTaskStatus = (taskId: Task['id'], newStatus: Task['isDone'], todolistId: Todolist['id']) => {
         // TODO variant 1
         const todolistTasks = tasks[todolistId]
         const updatedTasks = todolistTasks.map(task => task.id === taskId ? {...task, isDone: newStatus} : task)
@@ -71,7 +71,7 @@ export const App = () => {
         // setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, isDone: newStatus} : task)})
     }
 
-    const changeTaskTitleHandler = (taskId: Task['id'], newTitle: Task['title'], todolistId: Todolist['id']) => {
+    const changeTaskTitle = (taskId: Task['id'], newTitle: Task['title'], todolistId: Todolist['id']) => {
          setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, title: newTitle} : task)})
     }
 
@@ -92,7 +92,7 @@ export const App = () => {
         setTodolists(nextState)
     }
 
-    const changeTodolistTitleHandler = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
+    const changeTodolistTitle = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
         const nextState = todolists.map(todolist => todolist.id === todolistId ? {...todolist, title: newTitle} : todolist)
         setTodolists(nextState)
     }
@@ -134,9 +134,10 @@ export const App = () => {
                           deleteTask={deleteTask}
                           changeTodolistFilter={changeTodolistFilter}
                           createTask={createTask}
-                          changeTaskStatusHandler={changeTaskStatusHandler}
+                          changeTaskStatus={changeTaskStatus}
                           filter={todolist.filter}
-                          deleteTodolist={deleteTodolist}/>
+                          deleteTodolist={deleteTodolist}
+                          changeTaskTitle={changeTaskTitle}/>
         )
     })
 
