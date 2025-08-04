@@ -5,16 +5,17 @@ import {EditableSpan} from "./EditableSpan.tsx";
 import {ChangeEvent} from "react";
 
 type TodolistItemTypes = {
-    todolistId: Todolist['id']
     title: string
     tasks: Task[]
+    filter: FilterValues
+    todolistId: Todolist['id']
     deleteTask: (taskId: Task['id'], todolistId: Todolist['id']) => void
-    changeTodolistFilter: (filter: FilterValues, todolistId: Todolist['id']) => void
     createTask: (title: string, todolistId: Todolist['id']) => void
     changeTaskStatus: (taskId: Task['id'], newStatus: boolean, todolistId: Todolist['id']) => void
-    filter: FilterValues
-    deleteTodolist: (todolistId: Todolist['id']) => void
     changeTaskTitle: (taskId: Task['id'], newTitle: Task['title'], todolistId: Todolist['id']) => void
+    deleteTodolist: (todolistId: Todolist['id']) => void
+    changeTodolistFilter: (filter: FilterValues, todolistId: Todolist['id']) => void
+    changeTodolistTitle: (newTitle: Todolist['title'], todolistId: Todolist['id']) => void
 }
 
 export type Task = {
@@ -26,14 +27,15 @@ export type Task = {
 export const TodolistItem = ({
                                  title,
                                  tasks,
+                                 filter,
+                                 todolistId,
                                  deleteTask,
                                  createTask,
                                  changeTaskStatus,
                                  changeTaskTitle,
-                                 changeTodolistFilter,
-                                 filter,
-                                 todolistId,
                                  deleteTodolist,
+                                 changeTodolistFilter,
+                                 changeTodolistTitle,
                              }: TodolistItemTypes) => {
 
 
@@ -70,11 +72,13 @@ export const TodolistItem = ({
 
     const deleteTodolistHandler = () => deleteTodolist(todolistId)
 
+    const changeTodolistTitleHandler = (newTitle: string) => changeTodolistTitle(newTitle,todolistId)
+
 
     return (
         <div className='todolist'>
             <h3>
-                {title}
+                <EditableSpan title={title} changeItemTitle={changeTodolistTitleHandler} />
                 <Button title='X' onClickHandler={deleteTodolistHandler}/>
             </h3>
             <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={15}/>
