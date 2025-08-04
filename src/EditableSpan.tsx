@@ -3,9 +3,10 @@ import {ChangeEvent, useState} from "react";
 type EditableSpanTypes = {
     title: string
     className?: string
+    changeItemTitle: (newTitle: string) => void
 };
 
-export const EditableSpan = ({title, className}: EditableSpanTypes) => {
+export const EditableSpan = ({title, className, changeItemTitle}: EditableSpanTypes) => {
     const [isEditMode, setIsEditMode] = useState(false);
     const [itemTitle, setItemTitle] = useState(title);
     const onChangeItemTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -13,7 +14,10 @@ export const EditableSpan = ({title, className}: EditableSpanTypes) => {
     }
 
     const onEditeMode = () => setIsEditMode(true)
-    const offEditeMode = () => setIsEditMode(false)
+    const offEditeMode = () => {
+        setIsEditMode(false)
+        changeItemTitle(itemTitle)
+    }
 
 
     return (
