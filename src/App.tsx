@@ -71,6 +71,10 @@ export const App = () => {
         // setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, isDone: newStatus} : task)})
     }
 
+    const changeTaskTitleHandler = (taskId: Task['id'], newTitle: Task['title'], todolistId: Todolist['id']) => {
+         setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, title: newTitle} : task)})
+    }
+
     // TODO - Delete:
 
     const deleteTask = (taskId: Task['id'], todolistId: Todolist['id']) => {
