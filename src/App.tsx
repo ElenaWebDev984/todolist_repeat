@@ -72,7 +72,10 @@ export const App = () => {
     }
 
     const changeTaskTitle = (taskId: Task['id'], newTitle: Task['title'], todolistId: Todolist['id']) => {
-        setTasks({...tasks, [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, title: newTitle} : task)})
+        setTasks({
+            ...tasks,
+            [todolistId]: tasks[todolistId].map(task => task.id === taskId ? {...task, title: newTitle} : task)
+        })
     }
 
     // TODO - Delete:
@@ -93,7 +96,10 @@ export const App = () => {
     }
 
     const changeTodolistTitle = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
-        const nextState = todolists.map(todolist => todolist.id === todolistId ? {...todolist, title: newTitle} : todolist)
+        const nextState = todolists.map(todolist => todolist.id === todolistId ? {
+            ...todolist,
+            title: newTitle
+        } : todolist)
         setTodolists(nextState)
     }
 
@@ -131,13 +137,14 @@ export const App = () => {
                           todolistId={todolist.id}
                           title={todolist.title}
                           tasks={filteredTasks}
-                          deleteTask={deleteTask}
-                          changeTodolistFilter={changeTodolistFilter}
-                          createTask={createTask}
-                          changeTaskTitle={changeTaskTitle}
-                          changeTaskStatus={changeTaskStatus}
                           filter={todolist.filter}
-                          deleteTodolist={deleteTodolist}/>
+                          deleteTask={deleteTask}
+                          createTask={createTask}
+                          changeTaskStatus={changeTaskStatus}
+                          changeTaskTitle={changeTaskTitle}
+                          deleteTodolist={deleteTodolist}
+                          changeTodolistFilter={changeTodolistFilter}
+                          changeTodolistTitle={changeTodolistTitle}/>
         )
     })
 
