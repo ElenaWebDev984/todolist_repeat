@@ -2,9 +2,10 @@ import {ChangeEvent, useState} from "react";
 
 type EditableSpanTypes = {
     title: string
+    className?: string
 };
 
-export const EditableSpan = ({title}: EditableSpanTypes) => {
+export const EditableSpan = ({title, className}: EditableSpanTypes) => {
     const [isEditMode, setIsEditMode] = useState(false);
     const [itemTitle, setItemTitle] = useState(title);
     const onChangeItemTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,9 +20,13 @@ export const EditableSpan = ({title}: EditableSpanTypes) => {
         isEditMode
             ? <input
                 value={itemTitle}
+                autoFocus
                 onBlur={offEditeMode}
                 onChange={onChangeItemTitleHandler}
             />
-            : <span onDoubleClick={onEditeMode}>{title}</span>
+            : <span onDoubleClick={onEditeMode}
+                    className={className}>
+                {title}
+            </span>
     );
 };

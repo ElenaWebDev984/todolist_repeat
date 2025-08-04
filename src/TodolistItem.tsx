@@ -1,6 +1,7 @@
 import {Button} from "./Button.tsx";
 import {FilterValues, Todolist} from "./App.tsx";
 import {CreateItemForm} from "./CreateItemForm.tsx";
+import {EditableSpan} from "./EditableSpan.tsx";
 
 type TodolistItemTypes = {
     todolistId: Todolist['id']
@@ -42,7 +43,9 @@ export const TodolistItem = ({
                         <input type="checkbox"
                                checked={task.isDone}
                                onChange={(e) => changeTaskStatusHandler(task.id, e.currentTarget.checked, todolistId)}/>
-                        <span className={task.isDone ? 'task-done' : 'task'}>{task.title}</span>
+                        <EditableSpan title={task.title}
+                                      className={task.isDone ? 'task-done' : 'task'}
+                        />
                         <Button title='x'
                                 onClickHandler={() => deleteTask(task.id, todolistId)}/>
                     </li>
@@ -51,7 +54,7 @@ export const TodolistItem = ({
         </ul>
 
     const createTaskHandler = (newItemTitle: string) => {
-            createTask(newItemTitle, todolistId)
+        createTask(newItemTitle, todolistId)
     }
 
 
@@ -60,14 +63,13 @@ export const TodolistItem = ({
     const deleteTodolistHandler = () => deleteTodolist(todolistId)
 
 
-
     return (
         <div className='todolist'>
             <h3>
                 {title}
                 <Button title='X' onClickHandler={deleteTodolistHandler}/>
             </h3>
-            <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={15} />
+            <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={15}/>
             {tasksList}
             <div>
                 <Button title='All'
