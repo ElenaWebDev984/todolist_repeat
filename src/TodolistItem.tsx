@@ -93,19 +93,22 @@ export const TodolistItem = ({
             <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={30}/>
             {tasksList}
             <div>
-                <Button variant='contained'
+                <Button sx={{m: '10px'}}
+                        variant='contained'
                         onClick={() => createChangeFilterHandler('all')}
                         color={filter === 'all' ? 'secondary' : 'primary'}
                         size='small'>
                     All
                 </Button>
-                <Button variant='contained'
+                <Button sx={{m: '10px'}}
+                        variant='contained'
                         onClick={() => createChangeFilterHandler('active')}
                         color={filter === 'active' ? 'secondary' : 'primary'}
                         size='small'>
                     Active
                 </Button>
-                <Button variant='contained'
+                <Button sx={{m: '10px'}}
+                        variant='contained'
                         onClick={() => createChangeFilterHandler('completed')}
                         color={filter === 'completed' ? 'secondary' : 'primary'}
                         size='small'>
