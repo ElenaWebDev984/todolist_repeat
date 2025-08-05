@@ -3,6 +3,10 @@ import {Task, TodolistItem} from "./TodolistItem.tsx";
 import {useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
+import {AppBar, Container, IconButton, Toolbar} from "@mui/material";
+import Button from "@mui/material/Button";
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 export type FilterValues = 'all' | 'active' | 'completed'
 
@@ -15,6 +19,7 @@ export type Todolist = {
 export type TasksState = {
     [todolistId: string]: Task[]
 }
+
 
 
 export const App = () => {
@@ -151,8 +156,18 @@ export const App = () => {
 
     return (
         <div className="app">
-            <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
-            {todolistsComponents}
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton color="inherit">
+                        <MenuIcon/>
+                    </IconButton>
+                    <Button color="inherit">Sign in</Button>
+                </Toolbar>
+            </AppBar>
+           <Container maxWidth='lg'>
+               <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
+               {todolistsComponents}
+           </Container>
         </div>
     )
 }
