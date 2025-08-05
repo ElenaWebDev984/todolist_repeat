@@ -5,6 +5,7 @@ import {EditableSpan} from "./EditableSpan.tsx";
 import {ChangeEvent} from "react";
 import {Box, Checkbox, IconButton, List, ListItem} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import {containerSx, getListItemSx} from "./TodolistItem.styles.ts";
 
 type TodolistItemTypes = {
     title: string
@@ -57,10 +58,8 @@ export const TodolistItem = ({
                                   size='small'>
 
                         </Checkbox>
-                        <Box sx={{
-                            fontWeight: task.isDone ? 'normal' : 'bold',
-                            opacity: task.isDone ? '0.5' : '1'
-                        }}>
+                        <Box key={task.id}
+                             sx={getListItemSx(task.isDone)}>
                             <EditableSpan title={task.title}
                                           changeItemTitle={changeTaskTitleHandler}
                             />
@@ -96,7 +95,7 @@ export const TodolistItem = ({
             </h3>
             <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={30}/>
             {tasksList}
-            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+            <Box sx={containerSx}>
                 <Button variant='contained'
                         onClick={() => createChangeFilterHandler('all')}
                         color={filter === 'all' ? 'secondary' : 'primary'}
