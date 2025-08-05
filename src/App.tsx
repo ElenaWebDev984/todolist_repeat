@@ -137,7 +137,7 @@ export const App = () => {
         }
 
         return (
-            <Grid>
+            <Grid key={todolist.id}>
                 <Paper elevation={3}>
                     <TodolistItem key={todolist.id}
                                   todolistId={todolist.id}
@@ -171,7 +171,8 @@ export const App = () => {
                 <Grid container>
                     <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
                 </Grid>
-                <Grid container>
+                <Grid container
+                      spacing={8}>
                     {todolistsComponents}
                 </Grid>
             </Container>
