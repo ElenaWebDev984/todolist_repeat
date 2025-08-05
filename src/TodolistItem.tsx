@@ -3,7 +3,7 @@ import {FilterValues, Todolist} from "./App.tsx";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
 import {ChangeEvent} from "react";
-import {Checkbox, IconButton} from "@mui/material";
+import {Checkbox, IconButton, List} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 type TodolistItemTypes = {
@@ -43,7 +43,7 @@ export const TodolistItem = ({
 
     const tasksList = tasks.length === 0
         ? <span>Tasks list is empty</span>
-        : <ul>
+        : <List>
             {tasks.map(task => {
                 const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(task.id, e.currentTarget.checked, todolistId)
                 const changeTaskTitleHandler = (newTitle: string) => changeTaskTitle(task.id, newTitle, todolistId)
@@ -67,7 +67,7 @@ export const TodolistItem = ({
                     </li>
                 )
             })}
-        </ul>
+        </List>
 
     const createTaskHandler = (newItemTitle: string) => {
         createTask(newItemTitle, todolistId)
