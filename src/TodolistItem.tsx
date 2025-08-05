@@ -49,7 +49,8 @@ export const TodolistItem = ({
                 const changeTaskTitleHandler = (newTitle: string) => changeTaskTitle(task.id, newTitle, todolistId)
 
                 return (
-                    <ListItem>
+                    <ListItem key={task.id}
+                              disablePadding>
                         <Checkbox checked={task.isDone}
                                   onChange={changeTaskStatusHandler}
                                   color='default'
