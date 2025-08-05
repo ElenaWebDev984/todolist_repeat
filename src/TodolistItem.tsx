@@ -90,7 +90,7 @@ export const TodolistItem = ({
                     <DeleteIcon/>
                 </IconButton>
             </h3>
-            <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={15}/>
+            <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={30}/>
             {tasksList}
             <div>
                 <Button variant='contained'

@@ -151,7 +151,7 @@ export const App = () => {
 
     return (
         <div className="app">
-            <CreateItemForm createItem={createTodolist} maxItemTitleLength={10}/>
+            <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
             {todolistsComponents}
         </div>
     )
