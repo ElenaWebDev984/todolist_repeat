@@ -3,7 +3,7 @@ import {Task, TodolistItem} from "./TodolistItem.tsx";
 import {useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
-import {AppBar, Container, Grid, IconButton, Toolbar} from "@mui/material";
+import {AppBar, Container, Grid, IconButton, Paper, Toolbar} from "@mui/material";
 import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -19,7 +19,6 @@ export type Todolist = {
 export type TasksState = {
     [todolistId: string]: Task[]
 }
-
 
 
 export const App = () => {
@@ -138,18 +137,20 @@ export const App = () => {
         }
 
         return (
-            <TodolistItem key={todolist.id}
-                          todolistId={todolist.id}
-                          title={todolist.title}
-                          tasks={filteredTasks}
-                          filter={todolist.filter}
-                          deleteTask={deleteTask}
-                          createTask={createTask}
-                          changeTaskStatus={changeTaskStatus}
-                          changeTaskTitle={changeTaskTitle}
-                          deleteTodolist={deleteTodolist}
-                          changeTodolistFilter={changeTodolistFilter}
-                          changeTodolistTitle={changeTodolistTitle}/>
+            <Paper elevation={3}>
+                <TodolistItem key={todolist.id}
+                              todolistId={todolist.id}
+                              title={todolist.title}
+                              tasks={filteredTasks}
+                              filter={todolist.filter}
+                              deleteTask={deleteTask}
+                              createTask={createTask}
+                              changeTaskStatus={changeTaskStatus}
+                              changeTaskTitle={changeTaskTitle}
+                              deleteTodolist={deleteTodolist}
+                              changeTodolistFilter={changeTodolistFilter}
+                              changeTodolistTitle={changeTodolistTitle}/>
+            </Paper>
         )
     })
 
@@ -164,14 +165,14 @@ export const App = () => {
                     <Button color="inherit">Sign in</Button>
                 </Toolbar>
             </AppBar>
-           <Container maxWidth='lg'>
-               <Grid container>
-                   <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
-               </Grid>
-               <Grid container>
-                   {todolistsComponents}
-               </Grid>
-           </Container>
+            <Container maxWidth='lg'>
+                <Grid container>
+                    <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
+                </Grid>
+                <Grid container>
+                    {todolistsComponents}
+                </Grid>
+            </Container>
         </div>
     )
 }
