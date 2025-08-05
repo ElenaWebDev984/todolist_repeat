@@ -3,7 +3,7 @@ import {FilterValues, Todolist} from "./App.tsx";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
 import {ChangeEvent} from "react";
-import {IconButton} from "@mui/material";
+import {Checkbox, IconButton} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 type TodolistItemTypes = {
@@ -50,17 +50,19 @@ export const TodolistItem = ({
 
                 return (
                     <li>
-                        <input type="checkbox"
-                               checked={task.isDone}
-                               onChange={changeTaskStatusHandler}
-                        />
+                        <Checkbox checked={task.isDone}
+                                  onChange={changeTaskStatusHandler}
+                                  color='default'
+                                  size='small'>
+
+                        </Checkbox>
                         <EditableSpan title={task.title}
                                       className={task.isDone ? 'task-done' : 'task'}
                                       changeItemTitle={changeTaskTitleHandler}
                         />
                         <IconButton onClick={() => deleteTask(task.id, todolistId)}
                                     size='small'>
-                            <DeleteIcon fontSize='small' />
+                            <DeleteIcon fontSize='small'/>
                         </IconButton>
                     </li>
                 )
