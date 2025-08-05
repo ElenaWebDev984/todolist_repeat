@@ -43,7 +43,7 @@ export const TodolistItem = ({
 
     const tasksList = tasks.length === 0
         ? <span>Tasks list is empty</span>
-        : <List>
+        : <List disablePadding>
             {tasks.map(task => {
                 const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => changeTaskStatus(task.id, e.currentTarget.checked, todolistId)
                 const changeTaskTitleHandler = (newTitle: string) => changeTaskTitle(task.id, newTitle, todolistId)
