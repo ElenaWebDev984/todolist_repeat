@@ -3,7 +3,7 @@ import {Task, TodolistItem} from "./TodolistItem.tsx";
 import {useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
-import {AppBar, Container, IconButton, Toolbar} from "@mui/material";
+import {AppBar, Container, Grid, IconButton, Toolbar} from "@mui/material";
 import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -165,8 +165,12 @@ export const App = () => {
                 </Toolbar>
             </AppBar>
            <Container maxWidth='lg'>
-               <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
-               {todolistsComponents}
+               <Grid container>
+                   <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
+               </Grid>
+               <Grid container>
+                   {todolistsComponents}
+               </Grid>
            </Container>
         </div>
     )
