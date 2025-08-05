@@ -137,20 +137,22 @@ export const App = () => {
         }
 
         return (
-            <Paper elevation={3}>
-                <TodolistItem key={todolist.id}
-                              todolistId={todolist.id}
-                              title={todolist.title}
-                              tasks={filteredTasks}
-                              filter={todolist.filter}
-                              deleteTask={deleteTask}
-                              createTask={createTask}
-                              changeTaskStatus={changeTaskStatus}
-                              changeTaskTitle={changeTaskTitle}
-                              deleteTodolist={deleteTodolist}
-                              changeTodolistFilter={changeTodolistFilter}
-                              changeTodolistTitle={changeTodolistTitle}/>
-            </Paper>
+            <Grid>
+                <Paper elevation={3}>
+                    <TodolistItem key={todolist.id}
+                                  todolistId={todolist.id}
+                                  title={todolist.title}
+                                  tasks={filteredTasks}
+                                  filter={todolist.filter}
+                                  deleteTask={deleteTask}
+                                  createTask={createTask}
+                                  changeTaskStatus={changeTaskStatus}
+                                  changeTaskTitle={changeTaskTitle}
+                                  deleteTodolist={deleteTodolist}
+                                  changeTodolistFilter={changeTodolistFilter}
+                                  changeTodolistTitle={changeTodolistTitle}/>
+                </Paper>
+            </Grid>
         )
     })
 
