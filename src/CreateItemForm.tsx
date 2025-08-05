@@ -1,5 +1,7 @@
-import {Button} from "./Button.tsx";
+
 import {ChangeEvent, KeyboardEvent, useState} from "react";
+import {IconButton} from "@mui/material";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 
 type CreateItemFormTypes = {
@@ -43,9 +45,10 @@ export const CreateItemForm = ({createItem, maxItemTitleLength}: CreateItemFormT
                    onKeyDown={onKeyDownCreateTaskHandler}
                    className={error ? 'error' : ''}
             />
-            <Button title='+'
-                    onClickHandler={createTaskHandler}
-                    disabled={!addTaskCondition}/>
+            <IconButton onClick={createTaskHandler}
+                        disabled={!addTaskCondition}>
+                <AddBoxIcon/>
+            </IconButton>
             {taskTitle && taskTitle.length <= maxItemTitleLength &&
                 <div>Rest {maxItemTitleLength - taskTitle.length} characters</div>}
             {taskTitle.length > maxItemTitleLength && <div style={{color: 'red'}}>Title is too long</div>}
