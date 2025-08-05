@@ -3,7 +3,7 @@ import {FilterValues, Todolist} from "./App.tsx";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
 import {ChangeEvent} from "react";
-import {Checkbox, IconButton, List, ListItem} from "@mui/material";
+import {Box, Checkbox, IconButton, List, ListItem} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 type TodolistItemTypes = {
@@ -57,10 +57,14 @@ export const TodolistItem = ({
                                   size='small'>
 
                         </Checkbox>
-                        <EditableSpan title={task.title}
-                                      className={task.isDone ? 'task-done' : 'task'}
-                                      changeItemTitle={changeTaskTitleHandler}
-                        />
+                        <Box sx={{
+                            fontWeight: task.isDone ? 'normal' : 'bold',
+                            opacity: task.isDone ? '0.5' : '1'
+                        }}>
+                            <EditableSpan title={task.title}
+                                          changeItemTitle={changeTaskTitleHandler}
+                            />
+                        </Box>
                         <IconButton onClick={() => deleteTask(task.id, todolistId)}
                                     size='small'>
                             <DeleteIcon fontSize='small'/>
@@ -92,30 +96,26 @@ export const TodolistItem = ({
             </h3>
             <CreateItemForm createItem={createTaskHandler} maxItemTitleLength={30}/>
             {tasksList}
-            <div>
-                <Button sx={{m: '10px'}}
-                        variant='contained'
+            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                <Button variant='contained'
                         onClick={() => createChangeFilterHandler('all')}
                         color={filter === 'all' ? 'secondary' : 'primary'}
                         size='small'>
                     All
                 </Button>
-                <Button sx={{m: '10px'}}
-                        variant='contained'
+                <Button variant='contained'
                         onClick={() => createChangeFilterHandler('active')}
                         color={filter === 'active' ? 'secondary' : 'primary'}
                         size='small'>
                     Active
                 </Button>
-                <Button sx={{m: '10px'}}
-                        variant='contained'
+                <Button variant='contained'
                         onClick={() => createChangeFilterHandler('completed')}
                         color={filter === 'completed' ? 'secondary' : 'primary'}
                         size='small'>
                     Completed
                 </Button>
-
-            </div>
+            </Box>
         </div>
     );
 };

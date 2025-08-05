@@ -138,7 +138,7 @@ export const App = () => {
 
         return (
             <Grid key={todolist.id}>
-                <Paper elevation={3}>
+                <Paper elevation={3} sx={{p: '15px', borderRadius:'5px', backgroundColor: '#6cd6f7', border: '2px solid gray'}}>
                     <TodolistItem key={todolist.id}
                                   todolistId={todolist.id}
                                   title={todolist.title}
@@ -168,8 +168,10 @@ export const App = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth='lg'>
-                <Grid container>
-                    <CreateItemForm createItem={createTodolist} maxItemTitleLength={15}/>
+                <Grid container
+                      sx={{m: '20px'}}>
+                    <CreateItemForm createItem={createTodolist}
+                                    maxItemTitleLength={15}/>
                 </Grid>
                 <Grid container
                       spacing={8}>
