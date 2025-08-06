@@ -3,9 +3,10 @@ import {Task, TodolistItem} from "./TodolistItem.tsx";
 import {useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
-import {AppBar, Container, Grid, IconButton, Paper, Toolbar} from "@mui/material";
+import {AppBar, Box, Container, Grid, IconButton, Paper, Toolbar} from "@mui/material";
 import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
+import {containerSx} from "./TodolistItem.styles.ts";
 
 
 export type FilterValues = 'all' | 'active' | 'completed'
@@ -160,11 +161,15 @@ export const App = () => {
     return (
         <div className="app">
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar sx={containerSx}>
                     <IconButton color="inherit">
                         <MenuIcon/>
                     </IconButton>
-                    <Button color="inherit">Sign in</Button>
+                   <Box>
+                       <Button color="inherit">Sign in</Button>
+                       <Button color="inherit">Sign up</Button>
+                       <Button color="inherit">FAQ</Button>
+                   </Box>
                 </Toolbar>
             </AppBar>
             <Container maxWidth='lg'>
