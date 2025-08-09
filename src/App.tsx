@@ -168,7 +168,7 @@ export const App = () => {
                    <Box sx={containerSx}>
                        <NavButton color="inherit">Sign in</NavButton>
                        <NavButton color="inherit">Sign up</NavButton>
-                       <NavButton color="inherit">FAQ</NavButton>
+                       <NavButton color="inherit" background={'dodgerblue'}>FAQ</NavButton>
                    </Box>
                 </Toolbar>
             </AppBar>
