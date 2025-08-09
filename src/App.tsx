@@ -4,9 +4,9 @@ import {useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {AppBar, Box, Container, Grid, IconButton, Paper, Toolbar} from "@mui/material";
-import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
 import {containerSx} from "./TodolistItem.styles.ts";
+import {NavButton} from "./NavButton.ts";
 
 
 export type FilterValues = 'all' | 'active' | 'completed'
@@ -166,9 +166,9 @@ export const App = () => {
                         <MenuIcon/>
                     </IconButton>
                    <Box sx={containerSx}>
-                       <Button color="inherit">Sign in</Button>
-                       <Button color="inherit">Sign up</Button>
-                       <Button color="inherit">FAQ</Button>
+                       <NavButton color="inherit">Sign in</NavButton>
+                       <NavButton color="inherit">Sign up</NavButton>
+                       <NavButton color="inherit">FAQ</NavButton>
                    </Box>
                 </Toolbar>
             </AppBar>
