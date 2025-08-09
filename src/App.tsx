@@ -165,7 +165,7 @@ export const App = () => {
                     <IconButton color="inherit">
                         <MenuIcon/>
                     </IconButton>
-                   <Box>
+                   <Box sx={containerSx}>
                        <Button color="inherit">Sign in</Button>
                        <Button color="inherit">Sign up</Button>
                        <Button color="inherit">FAQ</Button>
