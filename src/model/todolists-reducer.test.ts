@@ -29,7 +29,7 @@ test('correct todolist should be deleted', () => {
     //         id: todolistId1,
     //     },
     // }
-    const action: DeleteTodolistActionType = DeleteTodolistAC()
+    const action: DeleteTodolistActionType = DeleteTodolistAC(todolistId1)
 
     const endState = todolistsReducer(startState, action)
 
