@@ -195,7 +195,7 @@ export const App = () => {
                             <NavButton color="inherit">Sign in</NavButton>
                             <NavButton color="inherit">Sign up</NavButton>
                             <NavButton color="inherit" background={theme.palette.primary.dark}>FAQ</NavButton>
-                            <Switch onChange={() => setIsDarkMode(!isDarkMode)} color={theme.palette.primary.dark}/>
+                            <Switch onChange={() => setIsDarkMode(!isDarkMode)} color={'default'}/>
                         </Box>
                     </Toolbar>
                 </AppBar>
