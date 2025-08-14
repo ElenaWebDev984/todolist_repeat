@@ -21,10 +21,11 @@ export const todolistsReducer = (todolists: Todolist[], action: ActionType):Todo
             return [...todolists, newTodolist]
 
         case 'change_todolist_title':
-            return todolists.map(todolist => todolist.id === action.payload.id) ? {
-                ...todolist,
-                title: action.payload.title
-            } : todolist)
+            return todolists.map(todolist =>
+                todolist.id === action.payload.id
+                    ? { ...todolist, title: action.payload.title }
+                    : todolist
+            )
 
         default:
             return todolists;
