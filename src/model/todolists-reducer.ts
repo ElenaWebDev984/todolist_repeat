@@ -25,12 +25,17 @@ export const todolistsReducer = (todolists: Todolist[], action: ActionType):Todo
 }
 
 // TODO AC - Action Created
-export const deleteTodolistAC = (id: string) => ({
+export const deleteTodolistAC = (id: Todolist['id']) => ({
     type: 'delete_todolist',
-        payload: { id }
+        payload: { id },
 } as const )
 
-export const createTodolistAC = (title: string) => ({
+export const createTodolistAC = (title: Todolist['title']) => ({
     type: 'create_todolist',
-    payload: { title }
+    payload: { title },
+} as const )
+
+export const changeTodolistTitleAC = (payload: {id: Todolist['id'], title: Todolist['title']}) => ({
+    type: 'change_todolist_title',
+    payload,
 } as const )
