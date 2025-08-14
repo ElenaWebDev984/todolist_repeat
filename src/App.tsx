@@ -3,10 +3,22 @@ import {Task, TodolistItem} from "./TodolistItem.tsx";
 import {useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
-import {AppBar, Box, Container, Grid, IconButton, Paper, Toolbar} from "@mui/material";
+import {
+    AppBar,
+    Box,
+    Container,
+    createTheme,
+    CssBaseline,
+    Grid,
+    IconButton,
+    Paper,
+    ThemeProvider,
+    Toolbar
+} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import {containerSx} from "./TodolistItem.styles.ts";
 import {NavButton} from "./NavButton.ts";
+import {pink, purple} from "@mui/material/colors";
 
 
 export type FilterValues = 'all' | 'active' | 'completed'
@@ -128,6 +140,13 @@ export const App = () => {
 
     //   TODO UI - Read
 
+    const theme = createTheme({
+        palette: {
+            primary: pink,
+            secondary: purple,
+        },
+    })
+
     const todolistsComponents = todolists.map(todolist => {
         let filteredTasks = tasks[todolist.id]
         if (todolist.filter === 'active') {
@@ -139,7 +158,8 @@ export const App = () => {
 
         return (
             <Grid key={todolist.id}>
-                <Paper elevation={3} sx={{p: '15px', borderRadius:'5px', backgroundColor: '#6cd6f7', border: '2px solid gray'}}>
+                <Paper elevation={3}
+                       sx={{p: '15px', borderRadius: '5px', backgroundColor: '#fbf8fa', border: '2px solid gray'}}>
                     <TodolistItem key={todolist.id}
                                   todolistId={todolist.id}
                                   title={todolist.title}
@@ -160,29 +180,32 @@ export const App = () => {
 
     return (
         <div className="app">
-            <AppBar position="static">
-                <Toolbar sx={containerSx}>
-                    <IconButton color="inherit">
-                        <MenuIcon/>
-                    </IconButton>
-                   <Box sx={containerSx}>
-                       <NavButton color="inherit">Sign in</NavButton>
-                       <NavButton color="inherit">Sign up</NavButton>
-                       <NavButton color="inherit" background={'dodgerblue'}>FAQ</NavButton>
-                   </Box>
-                </Toolbar>
-            </AppBar>
-            <Container maxWidth='lg'>
-                <Grid container
-                      sx={{m: '20px'}}>
-                    <CreateItemForm createItem={createTodolist}
-                                    maxItemTitleLength={15}/>
-                </Grid>
-                <Grid container
-                      spacing={8}>
-                    {todolistsComponents}
-                </Grid>
-            </Container>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <AppBar position="static">
+                    <Toolbar sx={containerSx}>
+                        <IconButton color="inherit">
+                            <MenuIcon/>
+                        </IconButton>
+                        <Box sx={containerSx}>
+                            <NavButton color="inherit">Sign in</NavButton>
+                            <NavButton color="inherit">Sign up</NavButton>
+                            <NavButton color="inherit" background={theme.palette.secondary.dark}>FAQ</NavButton>
+                        </Box>
+                    </Toolbar>
+                </AppBar>
+                <Container maxWidth='lg'>
+                    <Grid container
+                          sx={{m: '20px'}}>
+                        <CreateItemForm createItem={createTodolist}
+                                        maxItemTitleLength={15}/>
+                    </Grid>
+                    <Grid container
+                          spacing={8}>
+                        {todolistsComponents}
+                    </Grid>
+                </Container>
+            </ThemeProvider>
         </div>
     )
 }
