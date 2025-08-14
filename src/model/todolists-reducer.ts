@@ -15,3 +15,11 @@ export const todolistsReducer = (todolists: Todolist[], action: DeleteTodolistAc
             return todolists;
     }
 }
+
+// TODO AC - Action Created
+export const DeleteTodolistAC = (id: string): DeleteTodolistActionType => ({
+    type: 'delete_todolist',
+        payload: {
+        id: id,
+    }
+})

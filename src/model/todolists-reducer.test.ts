@@ -1,7 +1,7 @@
 import {v1} from 'uuid'
 import { expect, test } from 'vitest'
 import type {Todolist} from '../App'
-import {todolistsReducer} from "./todolists-reducer.ts";
+import {DeleteTodolistAC, DeleteTodolistActionType, todolistsReducer} from "./todolists-reducer.ts";
 // import {DeleteTodolistActionType} from './todolists-reducer'
 
 test('correct todolist should be deleted', () => {
@@ -16,12 +16,12 @@ test('correct todolist should be deleted', () => {
 
     // 2. TODO Действие
     // TODO variant 1
-    const action = {
-        type: 'delete_todolist' as const,
-        payload: {
-            id: todolistId1,
-        },
-    }
+    // const action = {
+    //     type: 'delete_todolist' as const,
+    //     payload: {
+    //         id: todolistId1,
+    //     },
+    // }
     // TODO variant 2
     // const action: DeleteTodolistActionType = {
     //     type: 'delete_todolist',
@@ -29,6 +29,7 @@ test('correct todolist should be deleted', () => {
     //         id: todolistId1,
     //     },
     // }
+    const action: DeleteTodolistActionType = DeleteTodolistAC()
 
     const endState = todolistsReducer(startState, action)
 
