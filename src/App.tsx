@@ -108,6 +108,8 @@ export const App = () => {
         // setTasks({...tasks, [todolistId]: tasks[todolistId].filter(task => task.id !== taskId)})
     }
 
+    // TODO CRUD todolists
+
     const changeTodolistFilter = (filter: FilterValues, todolistId: Todolist['id']) => {
         const nextState = todolists.map(todolist => todolist.id === todolistId ? {...todolist, filter} : todolist)
         setTodolists(nextState)
