@@ -3,6 +3,7 @@ import {Task, TodolistItem} from "./TodolistItem.tsx";
 import {useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
+import Switch from '@mui/material/Switch';
 import {
     AppBar,
     Box,
@@ -140,11 +141,13 @@ export const App = () => {
 
     //   TODO UI - Read
 
+    const [isDarkMode, setDarkMode] = useState(false)
+
     const theme = createTheme({
         palette: {
             primary: pink,
             secondary: red,
-            mode: "dark",
+            mode: isDarkMode ? "dark" : "light",
         },
     })
 
