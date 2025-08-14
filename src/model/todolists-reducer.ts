@@ -3,7 +3,8 @@ import {v1} from "uuid";
 
 export type DeleteTodolistActionType = ReturnType<typeof deleteTodolistAC>
 export type CreateTodolistActionType = ReturnType<typeof createTodolistAC>
-type ActionType = DeleteTodolistActionType | CreateTodolistActionType
+export type ChangeTodolistTitleActionType = ReturnType<typeof changeTodolistTitleAC>
+type ActionType = DeleteTodolistActionType | CreateTodolistActionType | ChangeTodolistTitleActionType
 
 export const todolistsReducer = (todolists: Todolist[], action: ActionType):Todolist[] => {
     switch (action.type) {
@@ -18,6 +19,12 @@ export const todolistsReducer = (todolists: Todolist[], action: ActionType):Todo
                 filter: 'all',
             }
             return [...todolists, newTodolist]
+
+        case 'change_todolist_title':
+            return todolists.map(todolist => todolist.id === action.payload.id) ? {
+                ...todolist,
+                title: action.payload.title
+            } : todolist)
 
         default:
             return todolists;
