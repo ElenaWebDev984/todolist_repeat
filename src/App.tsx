@@ -18,7 +18,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import {containerSx} from "./TodolistItem.styles.ts";
 import {NavButton} from "./NavButton.ts";
-import {pink, purple} from "@mui/material/colors";
+import {pink, red} from "@mui/material/colors";
 
 
 export type FilterValues = 'all' | 'active' | 'completed'
@@ -143,7 +143,8 @@ export const App = () => {
     const theme = createTheme({
         palette: {
             primary: pink,
-            secondary: purple,
+            secondary: red,
+            mode: "dark",
         },
     })
 
@@ -159,7 +160,7 @@ export const App = () => {
         return (
             <Grid key={todolist.id}>
                 <Paper elevation={3}
-                       sx={{p: '15px', borderRadius: '5px', backgroundColor: '#fbf8fa', border: '2px solid gray'}}>
+                       sx={{p: '15px', borderRadius: '5px', border: '2px solid gray'}}>
                     <TodolistItem key={todolist.id}
                                   todolistId={todolist.id}
                                   title={todolist.title}
@@ -190,7 +191,7 @@ export const App = () => {
                         <Box sx={containerSx}>
                             <NavButton color="inherit">Sign in</NavButton>
                             <NavButton color="inherit">Sign up</NavButton>
-                            <NavButton color="inherit" background={theme.palette.secondary.dark}>FAQ</NavButton>
+                            <NavButton color="inherit" background={theme.palette.primary.dark}>FAQ</NavButton>
                         </Box>
                     </Toolbar>
                 </AppBar>
