@@ -141,7 +141,7 @@ export const App = () => {
 
     //   TODO UI - Read
 
-    const [isDarkMode, setDarkMode] = useState(false)
+    const [isDarkMode, setIsDarkMode] = useState(false)
 
     const theme = createTheme({
         palette: {
@@ -195,6 +195,7 @@ export const App = () => {
                             <NavButton color="inherit">Sign in</NavButton>
                             <NavButton color="inherit">Sign up</NavButton>
                             <NavButton color="inherit" background={theme.palette.primary.dark}>FAQ</NavButton>
+                            <Switch onChange={() => setIsDarkMode(!isDarkMode)}/>
                         </Box>
                     </Toolbar>
                 </AppBar>
