@@ -8,24 +8,21 @@ type ActionType = DeleteTodolistActionType | CreateTodolistActionType | ChangeTo
 
 export const todolistsReducer = (todolists: Todolist[], action: ActionType):Todolist[] => {
     switch (action.type) {
+
         case 'delete_todolist':
-            return todolists.filter(todolist => todolist.id !== action.payload.id)
+            const id = action.payload.id
+            return todolists.filter(todolist => todolist.id !== id)
 
         case 'create_todolist':
+            const title = action.payload.title
            const newTodolistId = v1()
-            const newTodolist: Todolist = {
-                id: newTodolistId,
-                title: action.payload.title,
-                filter: 'all',
-            }
+            const newTodolist: Todolist = {id: newTodolistId, title, filter: 'all'}
             return [...todolists, newTodolist]
 
-        case 'change_todolist_title':
-            return todolists.map(todolist =>
-                todolist.id === action.payload.id
-                    ? { ...todolist, title: action.payload.title }
-                    : todolist
-            )
+        case 'change_todolist_title': {
+            const {id, title} = action.payload
+            return todolists.map(todolist => todolist.id === id ? {...todolist, title} : todolist)
+        }
 
         default:
             return todolists;
