@@ -45,9 +45,9 @@ export const deleteTodolistAC = (id: Todolist['id']) => ({
     payload: {id},
 } as const)
 
-export const createTodolistAC = (title: Todolist['title']) => ({
+export const createTodolistAC = (payload: {title: Todolist['title'], id: Todolist['id']}) => ({
     type: 'create_todolist',
-    payload: {title},
+    payload,
 } as const)
 
 export const changeTodolistTitleAC = (payload: { id: Todolist['id'], title: Todolist['title'] }) => ({
