@@ -126,6 +126,7 @@ export const App = () => {
 
     const deleteTodolist = (todolistId: Todolist['id']) => {
         dispatchToTodolists(deleteTodolistAC(todolistId))
+        delete tasks[todolistId]
     }
 
     const createTodolist = (title: string) => {
