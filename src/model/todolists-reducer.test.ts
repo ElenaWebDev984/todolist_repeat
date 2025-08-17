@@ -33,8 +33,9 @@ test('correct todolist should be deleted', () => {
 
 
 test('correct todolist should be created', () => {
+    const id = v1()
     const title = 'New todolist'
-    const endState = todolistsReducer(startState, createTodolistAC(title))
+    const endState = todolistsReducer(startState, createTodolistAC({title, id}))
     expect(endState.length).toBe(3)
     expect(endState[2].title).toBe(title)
 })
