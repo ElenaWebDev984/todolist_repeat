@@ -20,7 +20,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {containerSx} from "./TodolistItem.styles.ts";
 import {NavButton} from "./NavButton.ts";
 import {pink, red} from "@mui/material/colors";
-import {changeTodolistTitleAC, deleteTodolistAC, todolistsReducer} from "./model/todolists-reducer.ts";
+import {
+    changeTodolistFilterAC,
+    changeTodolistTitleAC,
+    deleteTodolistAC,
+    todolistsReducer
+} from "./model/todolists-reducer.ts";
 
 
 export type FilterValues = 'all' | 'active' | 'completed'
@@ -112,8 +117,7 @@ export const App = () => {
     // TODO CRUD todolists
 
     const changeTodolistFilter = (filter: FilterValues, todolistId: Todolist['id']) => {
-        const nextState = todolists.map(todolist => todolist.id === todolistId ? {...todolist, filter} : todolist)
-        setTodolists(nextState)
+        dispatchToTodolists(changeTodolistFilterAC({id: todolistId, filter: filter}))
     }
 
     const changeTodolistTitle = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
