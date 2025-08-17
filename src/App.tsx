@@ -1,6 +1,6 @@
 import './App.css'
 import {Task, TodolistItem} from "./TodolistItem.tsx";
-import {useState} from "react";
+import {useReducer, useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import Switch from '@mui/material/Switch';
@@ -20,6 +20,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {containerSx} from "./TodolistItem.styles.ts";
 import {NavButton} from "./NavButton.ts";
 import {pink, red} from "@mui/material/colors";
+import {todolistsReducer} from "./model/todolists-reducer.ts";
 
 
 export type FilterValues = 'all' | 'active' | 'completed'
@@ -40,7 +41,7 @@ export const App = () => {
     const todolistId_1 = v1()
     const todolistId_2 = v1()
 
-    const [todolists, setTodolists] = useState<Todolist[]>([
+    const [todolists, dispatchToTodolists] = useReducer(todolistsReducer, [
         {id: todolistId_1, title: 'What to learn', filter: 'all'},
         {id: todolistId_2, title: 'What to buy', filter: 'all'},
     ])
