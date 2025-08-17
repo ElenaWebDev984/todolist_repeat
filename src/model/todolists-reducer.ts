@@ -55,7 +55,7 @@ export const changeTodolistTitleAC = (payload: { id: Todolist['id'], title: Todo
     payload,
 } as const)
 
-export const changeTodolistFilterAC = (payload: { filter: FilterValues, id: Todolist['id'] }) => ({
+export const changeTodolistFilterAC = (payload: { id: Todolist['id'], filter: FilterValues }) => ({
     type: 'change_todolist_filter',
     payload,
 } as const)
