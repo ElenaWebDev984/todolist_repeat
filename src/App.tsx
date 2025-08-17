@@ -22,7 +22,7 @@ import {NavButton} from "./NavButton.ts";
 import {pink, red} from "@mui/material/colors";
 import {
     changeTodolistFilterAC,
-    changeTodolistTitleAC,
+    changeTodolistTitleAC, createTodolistAC,
     deleteTodolistAC,
     todolistsReducer
 } from "./model/todolists-reducer.ts";
@@ -130,13 +130,7 @@ export const App = () => {
 
     const createTodolist = (title: string) => {
         const newTodolistId = v1()
-        const newTodolist: Todolist = {
-            id: newTodolistId,
-            title: title,
-            filter: 'all',
-        }
-        const nextState = [...todolists, newTodolist]
-        setTodolists(nextState)
+        dispatchToTodolists(createTodolistAC({title, id: newTodolistId}))
         setTasks({...tasks, [newTodolistId]: []})
     }
 
