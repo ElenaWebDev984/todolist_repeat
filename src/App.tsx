@@ -20,7 +20,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {containerSx} from "./TodolistItem.styles.ts";
 import {NavButton} from "./NavButton.ts";
 import {pink, red} from "@mui/material/colors";
-import {deleteTodolistAC, todolistsReducer} from "./model/todolists-reducer.ts";
+import {changeTodolistTitleAC, deleteTodolistAC, todolistsReducer} from "./model/todolists-reducer.ts";
 
 
 export type FilterValues = 'all' | 'active' | 'completed'
@@ -117,11 +117,7 @@ export const App = () => {
     }
 
     const changeTodolistTitle = (newTitle: Todolist['title'], todolistId: Todolist['id']) => {
-        const nextState = todolists.map(todolist => todolist.id === todolistId ? {
-            ...todolist,
-            title: newTitle
-        } : todolist)
-        setTodolists(nextState)
+        dispatchToTodolists(changeTodolistTitleAC({id: todolistId, title: newTitle}))
     }
 
     const deleteTodolist = (todolistId: Todolist['id']) => {
